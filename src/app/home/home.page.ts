@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { AuthService } from 'src/service/Auth/auth-service';
 import {
   IonHeader,
   IonToolbar,
@@ -34,6 +35,7 @@ import { Alerts } from '../../service/alerts/alerts';
 export class HomePage {
   private nav = inject(NavController);
   private Alerts = inject(Alerts);
+  private authService = inject(AuthService)
 
   constructor() {}
 
@@ -51,4 +53,24 @@ export class HomePage {
         this.nav.navigateForward('/inicio')
 
   }
+
+  // En home.page.ts o donde necesites verificar
+async checkAccess() {
+  const isLoggedIn = await this.authService.isAuthenticated();
+  
+  if (isLoggedIn) {
+    const isAdmin = await this.authService.isAdmin();
+    const isConductor = await this.authService.isConductor();
+    
+    if (isAdmin) {
+      this.nav.navigateBack('/admin');
+    } else if (isConductor) {
+      this.nav.navigateBack('/home-conductor');
+
+    }
+  } else {
+    // Usuario normal - ir a inicio público
+      this.nav.navigateBack('/inicio');
+  }
+}
 }

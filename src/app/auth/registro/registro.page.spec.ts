@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RegistroPage } from './registro.page';
+import { beforeEach, describe, it } from 'node:test';
 
 describe('RegistroPage', () => {
   let component: RegistroPage;
@@ -15,3 +16,7 @@ describe('RegistroPage', () => {
     expect(component).toBeTruthy();
   });
 });
+function expect(component: RegistroPage) {
+  throw new Error('Function not implemented.');
+}
+

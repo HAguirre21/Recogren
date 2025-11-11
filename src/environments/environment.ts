@@ -3,9 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  url : 'http://apirecoleccion.gonzaloandreslucio.com/api',
-  url2 :'http://127.0.0.1:8000/api',
-  production: false
+  url: "http://apirecoleccion.gonzaloandreslucio.com/api",
+  supabaseUrl: "https://nuozmrwzzgexjzialsvo.supabase.co",
+  supabaseKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im51b3ptcnd6emdleGp6aWFsc3ZvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI3ODI0OTgsImV4cCI6MjA3ODM1ODQ5OH0.AbkFFKl1ERGqhJUhZDSn2tGZB-K1PXpONPmA85NVwyA", 
 };
 
 /*

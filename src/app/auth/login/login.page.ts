@@ -19,7 +19,7 @@ import {
   NavController,
   LoadingController,
   IonLabel,
-  AlertController, IonImg, IonButtons, IonSkeletonText, IonText } from '@ionic/angular/standalone';
+  AlertController, IonImg, IonButtons, IonSkeletonText, IonText, IonTabButton } from '@ionic/angular/standalone';
 import { AuthService } from 'src/service/Auth/auth-service';
 import { Alerts } from 'src/service/alerts/alerts';
 
@@ -28,7 +28,7 @@ import { Alerts } from 'src/service/alerts/alerts';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonText, IonImg, 
+  imports: [IonTabButton, IonText, IonImg, 
     IonButton,
     IonItem,
     IonContent,
@@ -60,34 +60,49 @@ export class LoginPage implements OnInit {
 
 
 
-  async login() {
-    if (this.loginForm.invalid) return this.Alerts.DataVacia();
+async login() {
+  if (this.loginForm.invalid) return this.Alerts.DataVacia();
 
-    const loading = await this.loadingController.create({
-      message: 'Iniciando sesión...',
+  const loading = await this.loadingController.create({
+    message: 'Iniciando sesión...',
+  });
+  await loading.present();
+
+  try {
+    const formValue = this.loginForm.value;
+    const result = await this.authService.login({
+      email: formValue.email,
+      password: formValue.password
     });
-    await loading.present();
-
-    try {
-      const formValue = this.loginForm.value;
-      const isAuthenticated = await this.authService.login(formValue);
-      if (isAuthenticated) {
+    
+    if (result.success && result.user) {
+      console.log('🎉 Login exitoso, rol:', result.user.role);
+      
+      // 🔥 NAVEGAR SEGÚN EL ROL DEL USER
+      if (result.user.role === 'admin') {
+        this.Nav.navigateRoot('/admin');
+      } else if (result.user.role === 'conductor') {
         this.Nav.navigateRoot('/home-conductor');
-        await loading.dismiss();
       } else {
-        this.Alerts.DataIncorreta();
-        await loading.dismiss();
+        this.Nav.navigateRoot('/home');
       }
-    } catch (error) {
-      console.error('Error during login:', error);
-      this.Alerts.DataIncorreta();
+      
+      await loading.dismiss();
+    } else {
+      await loading.dismiss();
     }
+  } catch (error) {
+    console.error('Error during login:', error);
+    await loading.dismiss();
+    this.Alerts.DataIncorreta();
   }
+}
 
   async goRegister() {
     await this.Alerts.Loading();
     this.Nav.navigateForward('/register');
-        
-
+  }
+    goPrueba(){
+    this.Nav.navigateForward('/home-conductor')
   }
 }
