@@ -1,35 +1,8 @@
 import { Component, inject, OnInit, Inject } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { FormsModule } from "@angular/forms";
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { DOCUMENT } from "@angular/common";
-import {
-  IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
-  IonText,
-  IonIcon,
-  IonImg,
-  IonButton,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardTitle,
-  IonList,
-  IonItem,
-  IonLabel,
-  IonBadge,
-  IonAlert,
-  IonFab,
-  IonFabButton,
-  IonInput,
-  IonTextarea,
-  IonButtons,
-  IonModal,
-  AlertController,
-  IonSpinner,
-  IonFabList,
-} from "@ionic/angular/standalone";
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonText, IonIcon, IonImg, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonList, IonItem, IonLabel, IonBadge, IonAlert, IonFab, IonFabButton, IonInput, IonTextarea, IonButtons, IonModal, AlertController, IonSpinner, IonFabList, IonSegment, IonSegmentButton, IonFooter, IonSegmentView, IonSegmentContent, IonMenu, NavController, IonMenuButton, IonTabButton, LoadingController, IonSelectOption, IonSelect, IonActionSheet, IonNote, IonAvatar } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import {
   notifications,
@@ -49,7 +22,11 @@ import {
   locate,
   eyeOff,
   eye,
-} from "ionicons/icons";
+  map,
+  home,
+  personOutline,
+  personRemoveOutline,
+  logOut, camera, ellipsisVertical, personCircle, settings, shieldCheckmark } from "ionicons/icons";
 import { CargaDatos } from "src/service/datos/cargar-datos";
 import { Geolocation } from "@capacitor/geolocation";
 import Map from "ol/Map";
@@ -69,6 +46,10 @@ import Stroke from "ol/style/Stroke";
 import { Coordinate } from "ol/coordinate";
 import { Calles } from "src/interfaces/calles";
 import { Rutas } from "src/interfaces/rutas";
+import { UserProfile } from "src/interfaces/userprofile";
+import { AuthService } from "../../../service/Auth/auth-service";
+import { Vehiculos } from "src/interfaces/vehiculos";
+import { Alerts } from "src/service/alerts/alerts";
 
 // Interfaz para los puntos del recorrido
 interface PuntoRecorrido {
@@ -80,12 +61,17 @@ interface PuntoRecorrido {
   orden: number;
 }
 
+
+
 @Component({
   selector: "app-home-conductor",
   templateUrl: "./home-admin.page.html",
   styleUrls: ["./home-admin.page.scss"],
   standalone: true,
-  imports: [
+  imports: [IonAvatar, IonNote, IonActionSheet,
+    IonSelect,
+    IonInput,
+    IonFooter,
     IonFabList,
     IonModal,
     IonButtons,
@@ -111,25 +97,42 @@ interface PuntoRecorrido {
     CommonModule,
     FormsModule,
     IonIcon,
-  ],
+    IonSegment,
+    IonSegmentButton,
+    IonText, IonSelectOption, ReactiveFormsModule, IonMenuButton],
 })
 export class HomeAdminPage implements OnInit {
+  Perfil: UserProfile | null = null;
+  modalAbiertoInfo = false;
+  dataSesion = inject(AuthService).currentUser;
+  selectedTab: "map" | "home" | "perfil" = "map";
   private map: Map | undefined;
+  anos = ['2019', '2020', '2021', '2022', '2023', '2024'];
   private datos = inject(CargaDatos);
   private alertController = inject(AlertController);
   modalRutasAbierto = false;
+  private nav = inject(NavController);
+  private authService = inject(AuthService);
   markerLayer: any;
+  private alerts = inject(Alerts);
+  private loadingController = inject(LoadingController);
   routeLayer: any;
   private rutasLayer: any;
+  vehiculoForm!: FormGroup;
   calleGuardada = "";
   data: Calles[] = [];
   currentLocation: { lat: number; lng: number } | null = null;
   isLoading = true;
+  vehiculo! : Vehiculos[];
+  userName = "";
+  modalConductor = false;
+  userData: { name: string; role: string; email: string } | null = null;
   guardandoRuta = false;
+  private CargaDatos = inject(CargaDatos);
   cargandoRutas = false;
   isDarkMode = false;
   rutasVisibles = true; // Nueva variable para controlar visibilidad
-
+  conductores: UserProfile[] = [];
   // Variables para el recorrido
   modoRecorrido = false;
   puntosRecorrido: PuntoRecorrido[] = [];
@@ -149,25 +152,7 @@ export class HomeAdminPage implements OnInit {
   private document = inject(DOCUMENT);
 
   constructor() {
-    addIcons({
-      location,
-      document,
-      download,
-      copy,
-      trash,
-      notifications,
-      add,
-      play,
-      stop,
-      close,
-      refresh,
-      wifi,
-      sunny,
-      moon,
-      locate,
-      eyeOff,
-      eye,
-    });
+    addIcons({personRemoveOutline,download,copy,trash,close,refresh,locate,personCircle,settings,notifications,shieldCheckmark,logOut,home,map,personOutline,ellipsisVertical,add,location,camera,document,play,stop,wifi,sunny,moon,eyeOff,eye,});
   }
 
   async ngOnInit() {
@@ -176,9 +161,40 @@ export class HomeAdminPage implements OnInit {
     this.actualizarRutaCompleta();
     this.cargarRutasGuardadas();
     this.initializeDarkMode();
+    this.onSegmentChange({ detail: { value: this.selectedTab } });
+    await this.getConductores();
+    await this.obtenerUserSeccion();
+    await this.loadUserData();
+    await this.obtenerVehiculos();
+      this.vehiculoForm = new FormGroup({
+      placa: new FormControl('', [Validators.required]),
+      marca: new FormControl('', [Validators.required]),
+      modelo: new FormControl('', [Validators.required]),
+      activo: new FormControl(true, [Validators.required]),
+      perfil_id: new FormControl(this.perfilId, [Validators.required]),
+    });
+
   }
 
-  // ===== MÉTODOS PARA MODO OSCURO/CLARO =====
+onSegmentChange(event: any) {
+  const tab = event.detail.value;
+  if (tab === 'map') {
+    setTimeout(() => {
+      this.loadMap();
+      this.cargarRutasGuardadas();
+      
+    }, 300);
+  }
+}
+
+
+  abrirModalInfo() {
+    this.modalAbiertoInfo = true;
+  }
+
+   cerrarModalInfo() {
+    this.modalAbiertoInfo = false;
+  }
 
   toggleDarkMode() {
     this.isDarkMode = !this.isDarkMode;
@@ -204,6 +220,13 @@ export class HomeAdminPage implements OnInit {
       this.isDarkMode = saved === "true";
       this.applyDarkMode();
     }
+  }
+
+  abriModalConductor(){
+    this.modalConductor = true;
+  }
+  cerraModalConductor(){
+    this.modalConductor = false;
   }
 
   cerrarModalRutas() {
@@ -257,11 +280,17 @@ export class HomeAdminPage implements OnInit {
 
     console.log("🗺️ Inicializando mapa en:", { lng, lat });
 
-    this.map = new Map({
+      this.map = new Map({
       target: "mapId",
       layers: [
         new TileLayer({
-          source: new OSM(),
+          source: new OSM(
+            {
+              attributions: [] 
+            }
+          ),
+          
+          
         }),
       ],
       view: new View({
@@ -464,9 +493,7 @@ export class HomeAdminPage implements OnInit {
     });
 
     console.log("✅ Todas las rutas dibujadas organizadamente");
-    this.mostrarMensaje(
-      `${this.rutasGuardadas.length} rutas mostradas en el mapa`
-    );
+   
   }
 
   private dibujarRutaOrganizada(ruta: Rutas, index: number) {
@@ -1027,4 +1054,108 @@ export class HomeAdminPage implements OnInit {
 
     await alert.present();
   }
+
+  async getConductores() {
+    this.conductores = await this.authService.getAllConductores();
+  }
+
+  async verConductor(id: string) {
+    this.Perfil = await this.authService.getProfileById(id);
+    this.abrirModalInfo();
+  }
+  async logout() {
+    // Confirmar con el usuario antes de cerrar sesión
+    const confirm = await this.alertController.create({
+      header: "Cerrar sesión",
+      message: "¿Estás seguro que deseas cerrar sesión?",
+      buttons: [
+        { text: "Cancelar", role: "cancel" },
+        {
+          text: "Cerrar sesión",
+          handler: () => {
+            // Ejecutar el cierre en una IIFE async (handler no puede ser async directamente)
+            void (async () => {
+              this.isLoading = true;
+              try {
+                // Llamada al servicio de autenticación
+                await this.authService.logout();
+
+                // Limpieza local de datos sensibles
+                localStorage.removeItem("token");
+                localStorage.removeItem("user"); // ajustar según keys reales
+                // Si deseas eliminar todo: localStorage.clear();
+
+                // Limpiar y destruir el mapa para evitar fugas
+                try {
+                  this.markerLayer?.getSource()?.clear?.();
+                  this.routeLayer?.getSource()?.clear?.();
+                  this.rutasLayer?.getSource()?.clear?.();
+                  if (this.map) {
+                    this.map.setTarget(undefined);
+                    this.map = undefined;
+                  }
+                } catch (mapErr) {
+                  console.warn("Error limpiando mapa durante logout:", mapErr);
+                }
+
+                // Navegar reiniciando el historial (no permitir volver atrás)
+                await this.nav.navigateRoot("/login");
+              } catch (error) {
+                console.error("Error al cerrar sesión:", error);
+                await this.mostrarAlerta(
+                  "Error",
+                  "No se pudo cerrar sesión. Intenta de nuevo."
+                );
+              } finally {
+                this.isLoading = false;
+              }
+            })();
+          },
+        },
+      ],
+    });
+
+    await confirm.present();
+  }
+
+  async loadUserData() {
+    this.userName = await this.authService.getUserName();
+  
+  }
+
+   async registrarVehiculo() {
+    const formValue = this.vehiculoForm.value;
+
+    if (this.vehiculoForm.invalid) {
+      this.alerts.DataIncorreta();
+      return;
+    }
+
+    const loading = await this.loadingController.create({
+      message: 'Registrando Vehículo...',
+    });
+
+    await loading.present();
+    
+    try {
+      await this.CargaDatos.registrarVehiculo(formValue);
+      await loading.dismiss();
+      this.vehiculoForm.reset();
+      this.obtenerVehiculos();
+      console.log('Vehículo registrado con éxito', formValue);
+    } catch (error) {
+      await loading.dismiss();
+      console.error('Error registrando vehículo:', error);
+    }
+  }
+
+  async obtenerVehiculos() {
+    this.vehiculo = await this.CargaDatos.obtenerVehiculos();
+    console.log("Vehículos Disponibles", this.vehiculo);
+  }
+
+async obtenerUserSeccion(){
+ this.userData = await this.authService.getCurrentUserData( );
+}
+  
 }

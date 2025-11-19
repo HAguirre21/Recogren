@@ -3,6 +3,7 @@ import { CapacitorHttp, HttpResponse } from '@capacitor/core';
 import { environment } from 'src/environments/environment';
 import { Calles } from 'src/interfaces/calles';
 import { Rutas } from 'src/interfaces/rutas';
+import { Vehiculos } from 'src/interfaces/vehiculos';
 
 @Injectable({
   providedIn: 'root'
@@ -142,4 +143,67 @@ export class CargaDatos {
       throw error;
     }
   }
+
+    async registrarVehiculo(formValue: {
+    placa: string;
+    marca: string;
+    modelo: string;
+    activo: boolean;
+    perfil_id: string;
+  }): Promise<Vehiculos> {
+    const options = {
+      url: environment.url + '/vehiculos',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      data: formValue,
+    };
+
+    try {
+      const response: HttpResponse = await CapacitorHttp.post(options);
+      return response.data;
+    } catch (error) {
+      console.error('Error al registrar vehículo:', error);
+      throw error;
+    }
+  }
+    async obtenerVehiculos(): Promise<Vehiculos[]> {
+    const options = {
+      url: environment.url + `/vehiculos?perfil_id=${this.perfilId}`,
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+      },
+    };
+
+    try {
+      const response: HttpResponse = await CapacitorHttp.get(options);
+      return response.data.data as Vehiculos[];
+    } catch (error) {
+      console.error('Error al obtener vehículos:', error);
+      throw error;
+    }
+  }
+
+  async obtenerVehiculoPorId(vehiculoId: string): Promise<Vehiculos> {
+    const options = {
+      url: environment.url + `/vehiculos/${vehiculoId}?perfil_id=${this.perfilId}`,
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+      },
+    };
+
+    try {
+      const response: HttpResponse = await CapacitorHttp.get(options);
+      return response.data as Vehiculos;
+    } catch (error) {
+      console.error('Error al obtener vehículo por ID:', error);
+      throw error;
+    }
+  }
+
+  
 }

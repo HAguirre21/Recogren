@@ -241,4 +241,93 @@ private generateUUID(): string {
       await Preferences.remove({ key });
     }
   }
+
+    async getAllConductores(): Promise<UserProfile[]> {
+    try {
+      const { data: conductors, error } = await this.supabase
+        .from('profiles')
+        .select('*')
+        .eq('role', 'conductor');
+
+      if (error) {
+        console.error('Error obteniendo conductores:', error);
+        return [];
+      }
+
+      return conductors || [];
+    } catch (error) {
+      console.error('Error en getAllConductors:', error);
+      return [];
+    }
+  }
+
+   /**
+   @param id id del perfil a obtener
+   @param forceRefresh si es true fuerza la consulta al servidor y actualiza la cache
+   */
+  async getProfileById(id: string, forceRefresh = false): Promise<UserProfile | null> {
+    const cacheKey = `profile_${id}`;
+    try {
+      // intentar leer cache local
+      if (!forceRefresh) {
+        try {
+          const { value } = await Preferences.get({ key: cacheKey });
+          if (value) {
+            const cached = JSON.parse(value) as UserProfile;
+            return cached;
+          }
+        } catch (e) {
+          // si falla el parse o la lectura, seguimos y consultamos al servidor
+          console.warn('No se pudo leer cache de perfil (se consultará al servidor):', e);
+        }
+      }
+
+      const { data: profile, error } = await this.supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', id)
+        .single();
+
+      if (error) {
+        console.error('Error obteniendo perfil por id:', error);
+        return null;
+      }
+
+      // guardar en cache (no bloquear si falla)
+      try {
+        await Preferences.set({ key: cacheKey, value: JSON.stringify(profile) });
+      } catch (e) {
+        console.warn('No se pudo cachear perfil:', e);
+      }
+
+      return profile;
+    } catch (error) {
+      console.error('Error en getProfileById:', error);
+      return null;
+    }
+  }
+
+    async getCurrentUserData(): Promise<{ name: string; role: string; email: string } | null> {
+    try {
+      const profile = await this.getUserProfile();
+      
+      if (profile) {
+        return {
+          name: profile.name,
+          role: profile.role,
+          email: profile.email
+        };
+      }
+      
+      return null;
+    } catch (error) {
+      console.error('Error obteniendo datos del usuario:', error);
+      return null;
+    }
+  }
+
+   async getUserName(): Promise<string> {
+    const userData = await this.getCurrentUserData();
+    return userData?.name || 'Usuario';
+  }
 }
