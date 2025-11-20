@@ -103,6 +103,7 @@ interface PuntoRecorrido {
 })
 export class HomeAdminPage implements OnInit {
   Perfil: UserProfile | null = null;
+  vehiculoData: Vehiculos | null = null;
   modalAbiertoInfo = false;
   dataSesion = inject(AuthService).currentUser;
   selectedTab: "map" | "home" | "perfil" = "map";
@@ -130,6 +131,7 @@ export class HomeAdminPage implements OnInit {
   guardandoRuta = false;
   private CargaDatos = inject(CargaDatos);
   cargandoRutas = false;
+  vehiculoModal = false;
   isDarkMode = false;
   rutasVisibles = true; // Nueva variable para controlar visibilidad
   conductores: UserProfile[] = [];
@@ -231,6 +233,14 @@ onSegmentChange(event: any) {
 
   cerrarModalRutas() {
     this.modalRutasAbierto = false;
+  }
+
+  vehiculoModalOpen(){
+    this.vehiculoModal = true;
+  }
+
+  cerrarModalVehiculo(){
+    this.vehiculoModal = false;
   }
 
   async loadMap() {
@@ -649,6 +659,7 @@ onSegmentChange(event: any) {
 
     // Crear la ruta completa - shape como STRING del GeoJSON
     this.rutaCompleta = {
+      id: "",
       nombre_ruta: this.nombreRuta,
       perfil_id: this.perfilId,
       shape: JSON.stringify(geoJsonLineString),
@@ -1153,6 +1164,12 @@ onSegmentChange(event: any) {
     this.vehiculo = await this.CargaDatos.obtenerVehiculos();
     console.log("Vehículos Disponibles", this.vehiculo);
   }
+
+  async verVehiculo(id: string) {
+    this.vehiculoData = await this.CargaDatos.obtenerVehiculoPorId(id);
+    this.vehiculoModalOpen();
+  }
+
 
 async obtenerUserSeccion(){
  this.userData = await this.authService.getCurrentUserData( );

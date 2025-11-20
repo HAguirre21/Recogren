@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CapacitorHttp, HttpResponse } from '@capacitor/core';
+import { Preferences } from '@capacitor/preferences';
 import { environment } from 'src/environments/environment';
 import { Calles } from 'src/interfaces/calles';
 import { Rutas } from 'src/interfaces/rutas';
@@ -187,7 +188,13 @@ export class CargaDatos {
     }
   }
 
-  async obtenerVehiculoPorId(vehiculoId: string): Promise<Vehiculos> {
+  /**
+   * Obtener vehículo por id con cache local.
+   * @param vehiculoId id del vehículo a obtener
+   * @param forceRefresh si es true fuerza la consulta al servidor y actualiza la cache
+   */
+  async obtenerVehiculoPorId(vehiculoId: string, forceRefresh = false): Promise<Vehiculos | null> {
+    const cacheKey = `vehiculo_${vehiculoId}`;
     const options = {
       url: environment.url + `/vehiculos/${vehiculoId}?perfil_id=${this.perfilId}`,
       method: 'GET',
@@ -197,13 +204,100 @@ export class CargaDatos {
     };
 
     try {
+      // intentar leer cache local
+      if (!forceRefresh) {
+        try {
+          const { value } = await Preferences.get({ key: cacheKey });
+          if (value) {
+            const cached = JSON.parse(value) as Vehiculos;
+            return cached;
+          }
+        } catch (e) {
+          // si falla el parse o la lectura, seguimos y consultamos al servidor
+          console.warn('No se pudo leer cache de vehículo (se consultará al servidor):', e);
+        }
+      }
+
       const response: HttpResponse = await CapacitorHttp.get(options);
-      return response.data as Vehiculos;
+      const vehiculo = response.data as Vehiculos;
+
+      // guardar en cache (no bloquear si falla)
+      try {
+        await Preferences.set({ key: cacheKey, value: JSON.stringify(vehiculo) });
+      } catch (e) {
+        console.warn('No se pudo cachear vehículo:', e);
+      }
+
+      return vehiculo;
     } catch (error) {
       console.error('Error al obtener vehículo por ID:', error);
+      return null;
+    }
+  }
+
+    async iniciarRecorrido(recorridoData: {
+    ruta_id: string;
+    vehiculo_id: string;
+    perfil_id: string; }): Promise<any> {
+    const options = {
+      url: environment.url + '/recorridos/iniciar',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      data: recorridoData,
+    };
+
+    try {
+      const response: HttpResponse = await CapacitorHttp.post(options);
+      return response.data;
+    } catch (error) {
+      console.error('Error al iniciar recorrido:', error);
       throw error;
     }
   }
 
+ async finalizarRecorrido(recorridoId: string, perfilId: string): Promise<any> {
+  const options = {
+    url: environment.url + `/recorridos/${recorridoId}/finalizar`,
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    data: {
+      "perfil_id": perfilId
+    }
+  };
+
+  try {
+    const response: HttpResponse = await CapacitorHttp.post(options);
+    return response.data;
+  } catch (error) {
+    console.error('Error al finalizar recorrido:', error);
+    throw error;
+  }   
+}
+
+   async obtenerRutasIds(): Promise<Rutas[]> {
+    const options = {
+      url: environment.url + `/rutas?perfil_id=${this.perfilId}`,
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+      },
+    };
+
+    try {
+      const response: HttpResponse = await CapacitorHttp.get(options);
+      const rutas: Rutas[] = response.data.data as Rutas[];
+      return rutas;
+    } catch (error) {
+      console.error('Error al obtener IDs de rutas:', error);
+      throw error;
+    }
+
+  }
   
 }

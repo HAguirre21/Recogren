@@ -1,36 +1,38 @@
 import {
-  Layer_default as Layer_default2
-} from "./chunk-W672BR53.js";
+  Tile_default as Tile_default2,
+  createOrUpdate,
+  getKeyZXY
+} from "./chunk-6CUHWIFK.js";
 import {
   ImageTile_default,
   TileRange_default,
-  Tile_default,
-  Tile_default2,
-  createOrUpdate2 as createOrUpdate,
-  getKeyZXY
-} from "./chunk-JJCLU3UC.js";
+  Tile_default
+} from "./chunk-3SDVIXTC.js";
 import {
   Layer_default
-} from "./chunk-VBEATP5T.js";
+} from "./chunk-IBMWENPM.js";
 import {
   TileState_default
 } from "./chunk-3U7ETZD3.js";
 import {
+  Layer_default as Layer_default2
+} from "./chunk-UCCBBIK7.js";
+import {
   toSize
 } from "./chunk-QQCNHA7Q.js";
-import "./chunk-UNU6NDF4.js";
-import "./chunk-JCNGSQ2U.js";
-import "./chunk-ZL6MHNQU.js";
+import "./chunk-GI72ARKJ.js";
+import "./chunk-WUDZSRES.js";
+import "./chunk-BKCPBW4N.js";
 import "./chunk-UUNRDFYK.js";
-import "./chunk-QHVSNTAI.js";
-import "./chunk-WBPRLYOS.js";
-import "./chunk-7JHN4WF6.js";
-import "./chunk-EYBOBW2C.js";
-import "./chunk-DZ25IOQW.js";
+import "./chunk-WS5SW5VH.js";
+import "./chunk-RSRDSJI7.js";
+import "./chunk-P6HALOFF.js";
+import "./chunk-54JY7N2P.js";
+import "./chunk-3NZPOGOE.js";
 import {
   apply,
   compose
-} from "./chunk-RKVJWJVJ.js";
+} from "./chunk-LHTBLVCB.js";
 import {
   containsCoordinate,
   createEmpty,
@@ -40,17 +42,17 @@ import {
   getRotatedViewport,
   getTopLeft,
   intersects
-} from "./chunk-K5T3NS23.js";
+} from "./chunk-EBQA7JMA.js";
 import "./chunk-6HE5LMMS.js";
 import {
   assert
 } from "./chunk-C3Y4LB4J.js";
-import "./chunk-FQI7DGUJ.js";
+import "./chunk-NJRX4ZLD.js";
 import {
   Disposable_default,
   ascending,
   getUid
-} from "./chunk-NJH5ZMTV.js";
+} from "./chunk-C55E5LNB.js";
 import "./chunk-HXCEJZED.js";
 import "./chunk-QXFS4N4X.js";
 
@@ -423,7 +425,7 @@ function getRenderExtent(frameState, extent) {
   }
   return extent;
 }
-var CanvasTileLayerRenderer = class extends Layer_default2 {
+var CanvasTileLayerRenderer = class extends Layer_default {
   /**
    * @param {LayerType} tileLayer Tile layer.
    * @param {Options} [options] Options.
@@ -1081,7 +1083,7 @@ var TileProperty_default = {
 };
 
 // node_modules/ol/layer/BaseTile.js
-var BaseTileLayer = class extends Layer_default {
+var BaseTileLayer = class extends Layer_default2 {
   /**
    * @param {Options<TileSourceType>} [options] Tile layer options.
    */

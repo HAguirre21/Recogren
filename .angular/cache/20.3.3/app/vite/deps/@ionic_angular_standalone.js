@@ -1,25 +1,4 @@
 import {
-  MENU_BACK_BUTTON_PRIORITY,
-  OVERLAY_BACK_BUTTON_PRIORITY,
-  shouldUseCloseWatcher
-} from "./chunk-RVYBAU3Q.js";
-import {
-  isRTL
-} from "./chunk-IUXA2G6D.js";
-import {
-  BACKDROP_NO_SCROLL,
-  GESTURE_CONTROLLER,
-  createGesture
-} from "./chunk-6U2AQA2C.js";
-import {
-  KEYBOARD_DID_OPEN
-} from "./chunk-G5UZVNUA.js";
-import {
-  Keyboard,
-  KeyboardResize,
-  getCapacitor
-} from "./chunk-IKS2SDKY.js";
-import {
   ION_CONTENT_CLASS_SELECTOR,
   ION_CONTENT_ELEMENT_SELECTOR,
   disableContentScrollY,
@@ -35,10 +14,10 @@ import {
 } from "./chunk-L6ISKHKK.js";
 import {
   iosTransitionAnimation
-} from "./chunk-3CDCREGM.js";
+} from "./chunk-JH2ANUFL.js";
 import {
   mdTransitionAnimation
-} from "./chunk-LTE6TVSA.js";
+} from "./chunk-AL76G6D4.js";
 import {
   LIFECYCLE_DID_ENTER,
   LIFECYCLE_DID_LEAVE,
@@ -51,7 +30,7 @@ import {
   setPageHidden,
   transition,
   waitForMount
-} from "./chunk-LTE3EC3Y.js";
+} from "./chunk-TZTGOK4U.js";
 import {
   Build,
   Fragment,
@@ -68,9 +47,26 @@ import {
   writeTask
 } from "./chunk-HADXAX2I.js";
 import {
-  doc,
-  win
-} from "./chunk-QEE7QVES.js";
+  MENU_BACK_BUTTON_PRIORITY,
+  OVERLAY_BACK_BUTTON_PRIORITY,
+  shouldUseCloseWatcher
+} from "./chunk-P7GVFB6F.js";
+import {
+  isRTL
+} from "./chunk-IUXA2G6D.js";
+import {
+  BACKDROP_NO_SCROLL,
+  GESTURE_CONTROLLER,
+  createGesture
+} from "./chunk-6U2AQA2C.js";
+import {
+  KEYBOARD_DID_OPEN
+} from "./chunk-G5UZVNUA.js";
+import {
+  Keyboard,
+  KeyboardResize,
+  getCapacitor
+} from "./chunk-IKS2SDKY.js";
 import {
   addEventListener,
   assert,
@@ -100,9 +96,9 @@ import {
   saveConfig
 } from "./chunk-2H3NLAAY.js";
 import {
-  NG_VALUE_ACCESSOR,
-  NgControl
-} from "./chunk-AO7FDDGM.js";
+  doc,
+  win
+} from "./chunk-QEE7QVES.js";
 import {
   ActivatedRoute,
   ChildrenOutletContexts,
@@ -113,6 +109,10 @@ import {
   UrlSerializer
 } from "./chunk-XCLCEFAD.js";
 import "./chunk-GDE7W7PQ.js";
+import {
+  NG_VALUE_ACCESSOR,
+  NgControl
+} from "./chunk-AO7FDDGM.js";
 import {
   CommonModule,
   Location,
@@ -8837,16 +8837,16 @@ var App = proxyCustomElement(class App2 extends H {
       rIC(() => __async(this, null, function* () {
         const isHybrid2 = isPlatform(window, "hybrid");
         if (!config.getBoolean("_testing")) {
-          import("./index7-MX65RDV2.js").then((module) => module.startTapClick(config));
+          import("./index7-WMWDDDFG.js").then((module) => module.startTapClick(config));
         }
         if (config.getBoolean("statusTap", isHybrid2)) {
           import("./status-tap-HT54Y6U4.js").then((module) => module.startStatusTap());
         }
         if (config.getBoolean("inputShims", needInputShims())) {
           const platform = isPlatform(window, "ios") ? "ios" : "android";
-          import("./input-shims-3QPVHMKV.js").then((module) => module.startInputShims(config, platform));
+          import("./input-shims-F3SCMR4Z.js").then((module) => module.startInputShims(config, platform));
         }
-        const hardwareBackButtonModule = yield import("./hardware-back-button-KNOKSIXQ.js");
+        const hardwareBackButtonModule = yield import("./hardware-back-button-SSHN4UAR.js");
         const supportsHardwareBackButtonEvents = isHybrid2 || shouldUseCloseWatcher();
         if (config.getBoolean("hardwareBackButton", supportsHardwareBackButtonEvents)) {
           hardwareBackButtonModule.startHardwareBackButton();
