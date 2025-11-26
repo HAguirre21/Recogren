@@ -1,23 +1,532 @@
-.mapa{
-  margin-top: 4%;
-  display: flex;
-  border-radius: 15px;
-  justify-content: center;
-  align-items: center;
+
+.header-custom {
+  .toolbar-gradient {
+    --color: white;
+  }
+
+  .title-custom {
+    font-weight: 600;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    
+    .title-icon {
+      margin-right: 8px;
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.menu{
+  color: white;
+}
+.content-custom {
+  --background: #f8fafc;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 8px;
+}
+
+// Secciones generales
+.section {
+  margin-bottom: 24px;
+  
+  .section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+    padding: 0 8px;
+
+    .section-icon {
+      color: #3880ff;
+      margin-right: 12px;
+      font-size: 1.4rem;
+      background: linear-gradient(135deg, #3880ff, #1e3a8a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e293b;
+    }
+  }
+}
+
+// Sección de Selectores - AJUSTAR MARGEN SUPERIOR
+.selectores-section {
+  margin-top: 10px; // Añade este margen superior
+
+  .selectors-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .selector-card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e2e8f0;
+    display: flex;
+    align-items: flex-start;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:active {
+      transform: translateY(2px);
+    }
+
+    .selector-content {
+      flex: 1;
+      width: 100%; // Asegura que ocupe todo el ancho
+      
+      .selector-label {
+        display: block;
+        font-weight: 600;
+        color: #475569;
+        margin-bottom: 8px;
+        font-size: 0.9rem;
+      }
+
+      .custom-select {
+        width: 100%;
+        --padding-start: 0;
+
+        &::part(placeholder) {
+          color: #94a3b8;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
+
+// Sección de Información
+.info-section {
+  .info-card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e2e8f0;
+
+    .info-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+
+      .route-badge, .vehicle-badge {
+        display: flex;
+        align-items: center;
+        background: #f1f5f9;
+        padding: 8px 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: #475569;
+
+        ion-icon {
+          margin-right: 6px;
+          font-size: 0.9rem;
+        }
+      }
+    }
+
+    .route-details {
+      .route-name {
+        margin: 0 0 8px 0;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #1e293b;
+      }
+
+      .route-description {
+        margin: 0;
+        color: #64748b;
+        font-size: 0.9rem;
+      }
+    }
+
+    .progress-container {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid #f1f5f9;
+
+      .progress-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+
+        .progress-text {
+          font-weight: 600;
+          color: #475569;
+          font-size: 0.9rem;
+        }
+
+        .progress-percentage {
+          font-weight: 700;
+          color: #059669;
+          font-size: 0.9rem;
+        }
+      }
+
+      .progress-bar {
+        background: #e2e8f0;
+        border-radius: 10px;
+        height: 10px;
+        overflow: hidden;
+        margin-bottom: 8px;
+
+        .progress-fill {
+          background: linear-gradient(90deg, #10b981, #059669);
+          height: 100%;
+          border-radius: 10px;
+          transition: width 0.5s ease;
+        }
+      }
+
+      .progress-stats {
+        text-align: right;
+        
+        small {
+          color: #64748b;
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+}
+
+.mapa-container {
+  background: white;
+  border-radius: 16px;
   overflow: hidden;
-  border: 2px solid #e0e0e0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+  margin-bottom: 20px; // Añade este margen
+
+  .map-controls {
+    padding: 12px 16px;
+    background: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    gap: 8px;
+
+    .map-btn {
+      --padding-start: 12px;
+      --padding-end: 12px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+  }
+
+  .mapa {
+    height: 40vh !important; 
+  }
 }
 
-.buttons{
-  display: flex;
-  justify-content: center;
-  margin-top: 2%;
+// Sección de Control Principal
+.control-section {
+  .action-container {
+    background: white;
+    border-radius: 16px;
+    padding: 24px 20px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e2e8f0;
+    text-align: center;
+
+    .main-action-button {
+      --border-radius: 16px;
+      --padding-top: 24px;
+      --padding-bottom: 24px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+      box-shadow: 0 6px 20px rgba(56, 128, 255, 0.3);
+
+      &[color="success"] {
+        box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+      }
+
+      &[color="danger"] {
+        box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+      }
+
+      .action-icon {
+        font-size: 1.3rem;
+      }
+    }
+
+    .action-info {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+      font-size: 0.9rem;
+
+      ion-icon {
+        margin-right: 6px;
+        font-size: 1rem;
+      }
+    }
+  }
 }
 
-.controls{
-  margin-top: 5%;
-  ion-select{
-    width: 100%;
-    padding-left: 5%;
+// Sección de Estado
+.status-section {
+  .status-card {
+    background: linear-gradient(135deg, #fffbeb, #fed7aa);
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid #fdba74;
+    animation: status-pulse 3s infinite;
+
+    .status-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(251, 146, 60, 0.3);
+
+      .status-indicator {
+        display: flex;
+        align-items: center;
+        color: #ea580c;
+        font-weight: 600;
+        font-size: 0.9rem;
+
+        .pulse-dot {
+          width: 8px;
+          height: 8px;
+          background: #ea580c;
+          border-radius: 50%;
+          margin-right: 8px;
+          animation: pulse 1.5s infinite;
+        }
+
+        .pulse-icon {
+          margin-right: 6px;
+          font-size: 1rem;
+        }
+      }
+
+      .status-time {
+        display: flex;
+        align-items: center;
+        color: #ea580c;
+        font-weight: 600;
+        font-size: 0.9rem;
+
+        ion-icon {
+          margin-right: 4px;
+          font-size: 0.9rem;
+        }
+      }
+    }
+
+    .status-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+
+      .status-item {
+        display: flex;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.7);
+        padding: 12px;
+        border-radius: 12px;
+
+        .status-icon {
+          background: #fed7aa;
+          border-radius: 10px;
+          padding: 8px;
+          margin-right: 12px;
+          
+          ion-icon {
+            color: #ea580c;
+            font-size: 1.1rem;
+          }
+        }
+
+        .status-details {
+          label {
+            display: block;
+            font-size: 0.7rem;
+            color: #92400e;
+            font-weight: 500;
+            margin-bottom: 2px;
+          }
+
+          strong {
+            display: block;
+            font-size: 0.9rem;
+            color: #431407;
+            
+            &.status-active {
+              color: #059669;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Estilos específicos para el menú y su botón */
+.menu-button {
+  --padding-start: 8px;
+  --padding-end: 8px;
+  --background: transparent;
+  --background-hover: rgba(255, 255, 255, 0.1);
+  --background-activated: rgba(255, 255, 255, 0.2);
+  --border-radius: 8px;
+}
+
+.menu-button ion-icon {
+  font-size: 24px;
+}
+
+/* Estilos del menú lateral */
+ion-menu {
+  --width: 280px;
+  --min-width: 280px;
+}
+
+ion-menu ion-content {
+  --background: #f8f9fa;
+}
+
+ion-menu ion-list {
+  background: transparent;
+  padding: 8px 0;
+}
+
+ion-menu ion-item {
+  --background: transparent;
+  --background-hover: #e8f5e8;
+  --background-activated: #d4edda;
+  --border-radius: 8px;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  margin: 4px 8px;
+}
+
+ion-menu ion-item ion-icon {
+  color: var(--ion-color-success);
+  font-size: 20px;
+}
+
+ion-menu ion-item ion-label {
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+/* Header del menú */
+ion-menu ion-toolbar {
+  --background: var(--ion-color-success);
+}
+
+ion-menu ion-title {
+  color: white;
+  font-weight: 600;
+}
+
+/* Efectos de hover y activo */
+ion-menu ion-item:hover {
+  --background: #e8f5e8;
+}
+
+ion-menu ion-item:active {
+  --background: #d4edda;
+}
+
+/* Animación de apertura del menú */
+ion-menu {
+  transition: transform 0.3s ease;
+}
+
+
+// Animaciones
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes status-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(251, 191, 36, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(251, 191, 36, 0);
+  }
+}
+
+// Espacio final para scroll
+.scroll-spacer {
+  height: 40px;
+}
+
+// Responsive Design - ACTUALIZA ESTA PARTE
+@media (max-width: 480px) {
+  .content-custom {
+    --padding-start: 12px;
+    --padding-end: 12px;
+  }
+
+  .section {
+    margin-bottom: 20px;
+  }
+
+  .status-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+
+  .mapa {
+    height: 50vh !important; // AJUSTA PARA MÓVIL
+  }
+
+  .selector-card {
+    padding: 16px !important;
+  }
+
+  .main-action-button {
+    --padding-top: 20px !important;
+    --padding-bottom: 20px !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .selectors-grid {
+    flex-direction: row !important;
+    
+    .selector-card {
+      flex: 1;
+    }
+  }
+
+  .status-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+
+  .mapa {
+    height: 60vh !important; // MÁS ALTO EN TABLETS
   }
 }
