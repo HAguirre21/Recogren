@@ -4,123 +4,12 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f5cda95-d59f-40cd-a570-7cecfc88f61c" name="Changes" comment="">
+    <list default="true" id="729504b2-79d0-4d7d-8790-4616c7ba8e91" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../.angular/cache/20.3.3/app/.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/../.angular/cache/20.3.3/app/.tsbuildinfo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.angular/cache/20.3.3/app/angular-compiler.db" beforeDir="false" afterPath="$PROJECT_DIR$/../.angular/cache/20.3.3/app/angular-compiler.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.angular/cache/20.3.3/app/angular-compiler.db-lock" beforeDir="false" afterPath="$PROJECT_DIR$/../.angular/cache/20.3.3/app/angular-compiler.db-lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/caches/deviceStreaming.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/AndroidProjectSystem.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/migrations.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/capacitor.build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/proguard-rules.pro" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/com/getcapacitor/myapp/ExampleInstrumentedTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/io/ionic/starter/MainActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-land-hdpi/splash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-land-mdpi/splash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-land-xhdpi/splash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-land-xxhdpi/splash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-land-xxxhdpi/splash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-port-hdpi/splash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-port-mdpi/splash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-port-xhdpi/splash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-port-xxhdpi/splash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-port-xxxhdpi/splash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/splash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/ic_launcher_background.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/xml/file_paths.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/xml/network_security_config.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/getcapacitor/myapp/ExampleUnitTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/capacitor.settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/variables.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/3rdpartylicenses.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/assets/icon/favicon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/assets/img/imagen.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/assets/img/inicio.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/assets/img/login.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/assets/img/loginP.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/assets/img/registro.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/assets/shapes.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-2HYKRWXY.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-2IABKENT.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-2R6CW7ES.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-42C7ZIID.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-42P5IUVT.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-4WFVMWDK.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-4YRHGV2P.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-5BTBL3HN.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-6F5K652D.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-DVVH2KKN.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-DZQ7FAT5.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-EP5HSTF2.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-FEZNCJ4H.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-GCQ4TVF3.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-GYLY2RJE.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-HC5W2IEF.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-HLTT42UF.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-INPSHTP4.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-J44JOJDG.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-J7VKH6DZ.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-K543AODH.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-KB7CRIQY.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-KNQ3R245.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-KWRLYA5W.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-L4D6KQ5I.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-LQUAXDDL.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-M2X7KQLB.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-M77GGQMK.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-NV3QH4JK.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-OZYWYLNK.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-S5WX6BOU.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-SDMJJ4FY.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-T3TC5I36.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-TPMZVY5T.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-TX57PKXG.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-WKCB6FTJ.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-WQAQPVQE.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-XDJGQ7GY.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/chunk-XMO6NZPM.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/main-KQ3IL3XH.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/polyfills-TDCRLYKL.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/prerendered-routes.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../www/styles-I7WJSELC.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proxy.conf.json" beforeDir="false" afterPath="$PROJECT_DIR$/../proxy.conf.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/environments/environment.prod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/environments/environment.prod.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,29 +28,29 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 2
-}</component>
-  <component name="ProjectId" id="35Fbgw72knhSfqEqQ7kv42nEHV8" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 2
+}]]></component>
+  <component name="ProjectId" id="361nXEPasQEbpO8qfj5lb0lNyzQ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Android App.app.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/haguirre/proyecto/Recogren&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Android App.app.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/haguirre/proyecto/Recogren/android"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
       <module name="android.app" />
@@ -238,11 +127,11 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="1f5cda95-d59f-40cd-a570-7cecfc88f61c" name="Changes" comment="" />
-      <created>1762708884865</created>
+      <changelist id="729504b2-79d0-4d7d-8790-4616c7ba8e91" name="Changes" comment="" />
+      <created>1764182983352</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1762708884865</updated>
+      <updated>1764182983352</updated>
     </task>
     <servers />
   </component>

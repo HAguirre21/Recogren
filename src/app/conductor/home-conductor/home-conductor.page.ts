@@ -1120,6 +1120,7 @@ private limpiarTodasLasCapas() {
   }
    async seleccionarVehiculo(event: any) {
     this.vehiculoId = event.detail.value;
+      this.vehiculoSeleccionado = this.vehiculo.find(v => v.id === this.vehiculoId);
     console.log("🚗 Vehículo seleccionado para el recorrido:", this.vehiculoId);
   }
 
