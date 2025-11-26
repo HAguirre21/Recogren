@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="729504b2-79d0-4d7d-8790-4616c7ba8e91" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.angular/cache/20.3.3/app/.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/../.angular/cache/20.3.3/app/.tsbuildinfo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.angular/cache/20.3.3/app/angular-compiler.db-lock" beforeDir="false" afterPath="$PROJECT_DIR$/../.angular/cache/20.3.3/app/angular-compiler.db-lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../proxy.conf.json" beforeDir="false" afterPath="$PROJECT_DIR$/../proxy.conf.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/environments/environment.prod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/environments/environment.prod.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,7 +15,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=PhysicalDevice, isTemplate=false, identifier=serial=geypzxzdw4ro9pbu)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -28,10 +24,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 2
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="361nXEPasQEbpO8qfj5lb0lNyzQ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -42,6 +38,7 @@
     "Android App.app.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.readMode.enableVisualFormatting": "true",

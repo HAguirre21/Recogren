@@ -11,15 +11,15 @@ import {
   IonSkeletonText,
   IonText,
   IonFooter,
-  NavController,
-} from '@ionic/angular/standalone';
+  NavController, IonIcon } from '@ionic/angular/standalone';
 import { Alerts } from '../../service/alerts/alerts';
+import { addIcons } from 'ionicons';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [
+  imports: [IonIcon, 
     IonFooter,
     IonText,
     IonSkeletonText,
@@ -37,7 +37,11 @@ export class HomePage {
   private Alerts = inject(Alerts);
   private authService = inject(AuthService)
 
-  constructor() {}
+  constructor() {
+    addIcons({
+      
+    });
+  }
 
   login() {
     this.Alerts.Loading();

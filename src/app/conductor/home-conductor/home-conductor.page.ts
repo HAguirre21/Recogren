@@ -72,6 +72,7 @@ import { AuthService } from "src/service/Auth/auth-service";
 
 // Importar Supabase
 import { createClient, RealtimeChannel } from '@supabase/supabase-js';
+import { environment } from "src/environments/environment";
 
 interface PuntoRecorrido {
   id: number;
@@ -243,8 +244,8 @@ private limpiarTodasLasCapas() {
   private initializeSupabase() {
     try {
       // ⚠️ REEMPLAZA CON TUS CREDENCIALES REALES DE SUPABASE
-      const supabaseUrl = 'https://tu-proyecto-real.supabase.co'; // TU URL REAL
-      const supabaseKey = 'tu-anon-key-real'; // TU KEY REAL
+      const supabaseUrl = environment.supabaseUrl; // TU URL REAL
+      const supabaseKey = environment.supabaseKey; // TU KEY REAL
       
       // Validar que no sean placeholders
       if (supabaseUrl.includes('tu-proyecto-real') || supabaseKey.includes('tu-anon-key-real')) {
