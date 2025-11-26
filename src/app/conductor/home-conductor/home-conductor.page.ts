@@ -215,6 +215,31 @@ export class HomeConductorPage implements OnInit, OnDestroy {
     this.initializeSupabase();
   }
 
+  private async initializeMapIfNeeded() {
+  // Si el mapa ya existe, limpiarlo antes de recrear
+  if (this.map) {
+    this.map.setTarget(undefined);
+    this.map = undefined;
+  }
+  
+  // Limpiar todas las capas
+  this.limpiarTodasLasCapas();
+}
+
+private limpiarTodasLasCapas() {
+  if (this.markerLayer) {
+    this.markerLayer.getSource()?.clear();
+  }
+  if (this.routeLayer) {
+    this.routeLayer.getSource()?.clear();
+  }
+  if (this.rutasLayer) {
+    this.rutasLayer.getSource()?.clear();
+  }
+  if (this.carLayer) {
+    this.carLayer.getSource()?.clear();
+  }
+}
   private initializeSupabase() {
     try {
       // ⚠️ REEMPLAZA CON TUS CREDENCIALES REALES DE SUPABASE
@@ -251,52 +276,80 @@ export class HomeConductorPage implements OnInit, OnDestroy {
 
   // ==================== SELECTOR DE MODO DE OPERACIÓN ====================
 
-    async MostrarMapa() {
-    this.isLoading = true;
+  async MostrarMapa() {
+  this.isLoading = true;
 
-    try {
-      const coordinates = await Geolocation.getCurrentPosition({
-        enableHighAccuracy: true,
-        timeout: 15000,
-        maximumAge: 60000,
-      });
-
-      const lat = coordinates.coords.latitude;
-      const lng = coordinates.coords.longitude;
-
-      console.log("📍 Ubicación REAL obtenida:", { lat, lng });
-      this.currentLocation = { lat, lng };
-
-      this.initializeMap(lng, lat);
-    } catch (error) {
-      console.error("❌ Error obteniendo ubicación:", error);
-      console.log("🗺️ Usando ubicación por defecto: Buenaventura");
-      this.initializeMap(-77.0797, 3.8836);
-    } finally {
-      this.isLoading = false;
+  try {
+    // ✅ VERIFICAR SI EL MAPA YA EXISTE
+    if (!this.map) {
+      await this.initializeMapIfNeeded();
     }
+
+    const coordinates = await Geolocation.getCurrentPosition({
+      enableHighAccuracy: true,
+      timeout: 15000,
+      maximumAge: 60000,
+    });
+
+    const lat = coordinates.coords.latitude;
+    const lng = coordinates.coords.longitude;
+
+    console.log("📍 Ubicación REAL obtenida:", { lat, lng });
+    this.currentLocation = { lat, lng };
+
+    // ✅ SI EL MAPA NO EXISTE, INICIALIZARLO
+    if (!this.map) {
+      this.initializeMap(lng, lat);
+    } else {
+      // ✅ SI EXISTE, SOLO ACTUALIZAR LA VISTA
+      this.map.getView().animate({
+        center: fromLonLat([lng, lat]),
+        zoom: 15,
+        duration: 1000,
+      });
+    }
+  } catch (error) {
+    console.error("❌ Error obteniendo ubicación:", error);
+    console.log("🗺️ Usando ubicación por defecto: Buenaventura");
+    
+    // ✅ INICIALIZAR MAPA CON UBICACIÓN POR DEFECTO SI NO EXISTE
+    if (!this.map) {
+      this.initializeMap(-77.0797, 3.8836);
+    }
+  } finally {
+    this.isLoading = false;
   }
+}
 
 
   private initializeMap(lng: number, lat: number): void {
-    if (this.map) {
-      this.map.setTarget(undefined);
-    }
+     // ✅ VERIFICAR SI EL ELEMENTO DEL MAPA EXISTE
+  const mapElement = document.getElementById('mapId');
+  if (!mapElement) {
+    console.error('❌ Elemento del mapa no encontrado');
+    return;
+  }
 
-    this.map = new Map({
-      target: "mapId",
-      layers: [
-        new TileLayer({
-          source: new OSM({
-            attributions: [],
-          }),
+  // ✅ LIMPIAR MAPA ANTERIOR SI EXISTE
+  if (this.map) {
+    this.map.setTarget(undefined);
+    this.map = undefined;
+  }
+
+  this.map = new Map({
+    target: "mapId", // ✅ ESTO ES CRÍTICO
+    layers: [
+      new TileLayer({
+        source: new OSM({
+          attributions: [],
         }),
-      ],
-      view: new View({
-        center: fromLonLat([lng, lat]),
-        zoom: 15,
       }),
-    });
+    ],
+    view: new View({
+      center: fromLonLat([lng, lat]),
+      zoom: 15,
+    }),
+  });
 
     // Capas del mapa
     this.markerLayer = new VectorLayer({ source: new VectorSource() });

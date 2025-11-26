@@ -73,7 +73,7 @@
         <ion-icon [name]="modoOperacion === 'tiempo-real' ? 'radio' : 'play'" 
                   [color]="modoOperacion === 'tiempo-real' ? 'success' : 'warning'"></ion-icon>
         {{ modoOperacion === 'tiempo-real' ? 
-           'Usa tu ubicación GPS real y envía datos al servidor' : 
+           'Usa tu ubicación GPS real para el seguimiento en tiempo real' : 
            'Movimiento automático para pruebas y demostraciones' }}
       </small>
     </div>
@@ -195,7 +195,7 @@
 
       <div class="action-info" *ngIf="!rutaSeleccionada">
         <ion-icon name="information-circle" color="medium"></ion-icon>
-        <span>Selecciona una ruta y vehículo para comenzar</span>
+        <span style="font-size: 13px;">Selecciona una ruta y vehículo para comenzar</span>
       </div>
 
       <div class="mode-warning" *ngIf="rutaSeleccionada && !modoRecorrido">
